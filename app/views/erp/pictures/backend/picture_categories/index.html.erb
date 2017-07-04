@@ -1,0 +1,90 @@
+<% content_for :title do %>
+    <%= t('.picture_categories') %>
+<% end %>
+
+<% content_for :page_title do %>
+    <i class="fa fa-th-list"></i> <%= t('.picture_categories') %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_pictures.new_backend_picture_category_path,
+        class: 'btn-noborder'
+    }) %>
+<% end %>
+
+<%= erp_datalist(
+    url: erp_pictures.list_backend_picture_categories_path,
+    keywords: [
+        {
+            text: t('.name'), name: 'erp_pictures_picture_categories.name'
+        },
+        {
+            text: t('creator'),
+            name: 'erp_users.name',
+            select: {
+                name: 'erp_users.id',
+                data_url: erp.dataselect_backend_users_path
+            }
+        },
+        {
+            text: t('.parent_picture_category'),
+            name: 'parents_erp_pictures_picture_categories.name',
+            select: {
+                name: 'parents_erp_pictures_picture_categories.id',
+                data_url: erp_pictures.dataselect_backend_picture_categories_path
+            }
+        }
+    ],
+    actions: [
+        {
+            text: '<i class="fa fa-eye-slash"></i> '+t('archive'),
+            url: erp_pictures.archive_all_backend_picture_categories_path,
+            data_method: 'PUT'
+        },
+        {
+            text: '<i class="fa fa-eye"></i> '+t('unarchive'),
+            url: erp_pictures.unarchive_all_backend_picture_categories_path,
+            data_method: 'PUT'
+        },
+        {
+            divider: true
+        },
+        {
+            text: '<i class="fa fa-trash"></i> '+t('.delete'),
+            url: erp_pictures.delete_all_backend_picture_categories_path,
+            data_method: 'DELETE',
+            data_confirm: t('delete_confirm')
+        }
+    ],
+    filters: [
+        {
+            text: t('archived'), name: 'show_archived', value: true, checked: false
+        },
+        {
+            divider: true
+        },
+        {
+            text: t('top_parent'), name: 'erp_pictures_picture_categories.parent_id', value: 'nil', checked: false
+        },
+    ],
+    columns: [
+        {
+            text: t('.name'), name: 'name', value: true, checked: true
+        },
+        {
+            text: t('.parent_name'), name: 'parent_name', value: true, checked: true
+        },
+        {
+            text: t('status'), name: 'status', value: true, checked: true
+        },
+        {
+            text: t('creator'), name: 'creator', value: true, checked: false
+        },
+        {
+            text: t('created_at'), name: 'created_at', value: true, checked: false
+        }
+    ],
+    sort: { sort_by: 'erp_pictures_picture_categories.created_at', sort_direction: 'desc' }
+) %>
