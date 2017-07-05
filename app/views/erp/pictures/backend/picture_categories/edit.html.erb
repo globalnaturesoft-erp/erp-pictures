@@ -1,0 +1,29 @@
+<% content_for :title do %>
+    <%= @picture_category.name %>
+<% end %>
+
+<% content_for :page_title do %>    
+    <a href="<%= erp_pictures.backend_picture_categories_path %>">
+    <i class="fa fa-th-list"></i> <%= t('.picture_categories') %>
+    </a> / <%= @picture_category.name %>
+<% end %>
+
+<% content_for :page_toolbar do %>
+    <%= erp_component('button/create', {
+        text: t('.create'),
+        href: erp_pictures.new_backend_picture_category_path,
+        class: 'btn-noborder'
+    }) %>
+<% end %>
+
+<div class="row">
+    <div class="col-md-12">
+        <% if @picture_category.errors.any? %>
+            <%= erp_form_control("form_error_message") %>
+        <% end %>
+        
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <%= render 'form', picture_category: @picture_category %>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+</div>

@@ -1,0 +1,66 @@
+vi:
+  layouts:
+    erp:
+      backend:
+        sidebar:
+          picture: "Quản lý hình ảnh"
+          picture_categories: "Chuyên mục hình ảnh"
+  erp:
+    pictures:
+      backend:
+        picture_categories:
+          create:
+            success: "Thêm chuyên mục thành công."
+          update:
+            success: "Cập nhật chuyên mục thành công."
+          destroy:
+            success: "Xóa chuyên mục thành công."
+          delete_all:
+            success: "Xóa chuyên mục được chọn thành công."
+          archive:
+            success: "Ẩn chuyên mục thành công."
+          unarchive:
+            success: "Hiện chuyên mục thành công."
+          archive_all:
+            success: "Ẩn chuyên mục được chọn thành công."
+          unarchive_all:
+            success: "Hiện chuyên mục được chọn thành công."
+          index:
+            picture_categories: "Chuyên mục hình ảnh"
+            top_parent: "Chuyên mục đầu tiên"
+            parent_name: "Chuyên mục cha"
+            parent_picture_category: "Chuyên mục cha"
+            name: "Tên chuyên mục"
+            parent_menu: "Chuyên mục cha"
+            create: "Thêm chuyên mục"
+            delete: "Xóa chuyên mục"
+          list:
+            name: "Tên chuyên mục"
+            parent_name: "Chuyên mục cha"
+            custom_order: "Sắp xếp"
+            delete: "Xóa chuyên mục"
+            no_matching_records_found: "Chuyên mục hình ảnh hiện tại đang trống."
+          new:
+            picture_categories: "Chuyên mục hình ảnh"
+            create: "Thêm chuyên mục"
+          edit:
+            picture_categories: "Chuyên mục hình ảnh"
+            create: "Thêm chuyên mục"
+          form:
+            name: "Tên chuyên mục"
+            pictures: "Hình ảnh liên quan"
+            enter_name: "Nhập tên chuyên mục"
+            parent_picture_category: "Chuyên mục cha"
+            choose_parent_picture_category: "Chọn chuyên mục cha"
+            description: "Mô tả cho chuyên mục"
+            enter_description: "Nhập mô tả cho chuyên mục"            
+  activerecord:
+    errors:
+      models:
+        erp/pictures/picture_category:
+          attributes:
+            name:
+              blank: "không được để trống."
+  attributes:
+    erp/pictures/picture_category:
+      name: "Tên"

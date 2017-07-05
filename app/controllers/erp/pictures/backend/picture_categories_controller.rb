@@ -19,16 +19,25 @@ module Erp
         # GET /picture_categories/new
         def new
           @picture_category = PictureCategory.new
+          48.times do
+            @picture_category.pictures.build
+          end
         end
 
         # GET /picture_categories/1/edit
         def edit
+          (48 - @picture_category.pictures.count).times do
+            @picture_category.pictures.build
+          end
         end
 
         # POST /picture_categories
         def create
-          @picture_category = PictureCategory.new(menu_params)
+          @picture_category = PictureCategory.new(picture_category_params)
           @picture_category.creator = current_user
+          48.times do
+            @picture_category.pictures.build
+          end
           if @picture_category.save
             if request.xhr?
               render json: {
@@ -148,7 +157,7 @@ module Erp
         def dataselect
           respond_to do |format|
             format.json {
-              render json: PictureCategory.dataselect(params[:keyword].split('/').last.strip)
+              render json: PictureCategory.dataselect(params[:keyword].strip)
             }
           end
         end
@@ -192,8 +201,9 @@ module Erp
           end
 
           # Only allow a trusted parameter "white list" through.
-          def menu_params
-            params.fetch(:menu, {}).permit(:name, :description, :parent_id)
+          def picture_category_params
+            params.fetch(:picture_category, {}).permit(:image_url, :name, :description, :parent_id,
+                                                       :pictures_attributes => [:id, :image_url, :image_url_cache, :picture_category_id, :_destroy ])
           end
       end
     end

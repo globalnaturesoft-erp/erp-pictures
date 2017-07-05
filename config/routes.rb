@@ -1,7 +1,7 @@
 Erp::Pictures::Engine.routes.draw do
     scope "(:locale)", locale: /en|vi/ do
 		namespace :backend, module: "backend", path: "backend/pictures" do
-			resources :menus do
+			resources :picture_categories do
 				collection do
 					post 'list'
 					get 'dataselect'
