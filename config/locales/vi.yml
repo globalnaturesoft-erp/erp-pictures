@@ -34,10 +34,12 @@ vi:
             parent_menu: "Chuyên mục cha"
             create: "Thêm chuyên mục"
             delete: "Xóa chuyên mục"
+            picture_number: "Hình ảnh"
           list:
             name: "Tên chuyên mục"
             parent_name: "Chuyên mục cha"
             custom_order: "Sắp xếp"
+            picture_number: "Hình ảnh"
             delete: "Xóa chuyên mục"
             no_matching_records_found: "Chuyên mục hình ảnh hiện tại đang trống."
           new:

@@ -14,6 +14,11 @@
                     <%= t('.parent_name') %>
                 </th>
             <% end %>
+            <% if get_columns(params).include?("picture_number") %>
+                <th>
+                    <%= t('.picture_number') %>
+                </th>
+            <% end %>
             <% if get_columns(params).include?("status") %>
                 <th>
                     <%= t('status') %>
@@ -47,6 +52,11 @@
                 <% if get_columns(params).include?("parent_name") %>
                     <td>
                         <%= picture_category.parent_name %>
+                    </td>
+                <% end %>
+                <% if get_columns(params).include?("picture_number") %>
+                    <td>
+                        <%= picture_category.picture_number %>
                     </td>
                 <% end %>
                 <% if get_columns(params).include?("status") %>

@@ -9,9 +9,14 @@ module Erp::Pictures
     has_many :children, -> { order(custom_order: :asc) }, class_name: "Erp::Pictures::PictureCategory", foreign_key: "parent_id"
     
     has_many :pictures, dependent: :destroy
-    accepts_nested_attributes_for :pictures, :reject_if => lambda { |a| a[:image_url].blank? && a[:image_url_cache].blank? }, :allow_destroy => true
+    accepts_nested_attributes_for :pictures, :reject_if => lambda { |a| a[:image_url].blank? and a[:image_url_cache].blank? }, :allow_destroy => true
     
     after_save :update_level
+    after_save :destroy_images_url_nil?
+    
+    def destroy_images_url_nil?
+			self.pictures.where(image_url: nil).destroy_all
+		end
     
     # init custom order
     def init_custom_order
@@ -144,6 +149,10 @@ module Erp::Pictures
     
     def limit_pictures
 			self.pictures.order("created_at asc").limit(4)
+		end
+    
+    def picture_number
+			self.pictures.count
 		end
     
   end
